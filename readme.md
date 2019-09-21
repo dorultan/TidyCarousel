@@ -66,6 +66,3 @@ I've built this carousel as a tanks giving to the open-source community, felt li
  const carousel = new Carousel(opts);
 ```
 
-# Contribution.
-
-# License.
