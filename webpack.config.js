@@ -1,10 +1,11 @@
 const path = require('path');
 const webpack = require('webpack');
 
+
 const config = {
 	name: 'client',
 	mode: process.env.NODE_ENV || 'development',
-	entry: ['babel-polyfill', './dev/index'],
+	entry: ['./dev/index'],
 	output: {
 		publicPath: './dist',
 		path: path.resolve(__dirname, 'dist'),
