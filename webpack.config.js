@@ -9,7 +9,10 @@ const config = {
 	output: {
 		publicPath: './dist',
 		path: path.resolve(__dirname, 'dist'),
-		filename: '[name].bundle.js'
+		filename: '[name].bundle.js',
+	  library: 'beta',
+	  libraryTarget: 'umd',
+	  globalObject: "typeof self !== 'undefined' ? self : this"
 	},
 	performance: {
 	 maxEntrypointSize: 512000,

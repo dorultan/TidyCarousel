@@ -19,7 +19,6 @@ import './scss/styles.scss';
 class TidyCarousel extends Controllers {
 	constructor(opts) {
 		super(opts);
-
 	}
 }
 
