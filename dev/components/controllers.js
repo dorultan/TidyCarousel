@@ -73,15 +73,6 @@ class Controllers extends Actions {
 			this.container.addEventListener('touchend', this.onSwipeEnd.bind(this));
 		}
 
-		this.container.addEventListener('contextmenu', (e) => {
-			e.preventDefault();
-			return false;
-		});
-
-		this.container.addEventListener('ondblclick', (e) => {
-			console.log(e);
-		})
-
 	}
 
 	// isTouch(e) {
@@ -193,9 +184,7 @@ class Controllers extends Actions {
 		if(this.pager) {
 			this.setActivePage();
 		}
-
 		if(Array.isArray(this.slides)) {
-
 			if(this.slides[this.next_slide].beforeAnimation) {
 				this.slides[this.next_slide].beforeAnimation(this.next_slide);
 			}
@@ -237,6 +226,7 @@ class Controllers extends Actions {
 						}
 						else {
 							this.pause = false;
+							this.shouldRestart();
 						}
 				}
 
@@ -270,8 +260,6 @@ class Controllers extends Actions {
 			}
 		}
 
-
-		// window.clearTimeout(this.duration_timer);
 		return false;
 	}
 

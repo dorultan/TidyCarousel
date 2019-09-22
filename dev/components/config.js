@@ -318,7 +318,7 @@ class Config {
 		if(this.opts.startAt) {
 			return this.opts.startAt;
 		}
-		return this.container.children.length -1;
+		return Array.isArray(this.slides) ? this.slides.length -1 : this.container.children.length -1 !== -1 ? this.container.children.length -1 : 0;
 	}
 
 	set startAt(v) {
