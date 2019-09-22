@@ -22,20 +22,4 @@ class TidyCarousel extends Controllers {
 	}
 }
 
-new TidyCarousel({
-	auto: true,
-	swipe: true,
-	drag: true,
-	afterAnimation: (elem, idx) => {
-
-		return new Promise((resolve, reject) => {
-			setTimeout(() => {
-				elem.innerHtml = "<h1>Hello world</h1>";
-				console.log(elem.innerHtml)
-				resolve()
-			}, 300)
-		})
-	}
-});
-
 export default TidyCarousel;
