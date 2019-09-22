@@ -127,6 +127,12 @@ class Actions extends Config {
 			}
 		}
 	}
+
+	setActiveSlide() {
+		if(!this.slides.length) {
+			this.container.children[this.startAt].classList.add('current_slide');
+		}
+	}
 }
 
 export default Actions;

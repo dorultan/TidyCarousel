@@ -63,6 +63,13 @@ class Config {
 	}
 
 	get slides () {
+
+		if(!this.opts.slides) {
+			if(!this.container.children.length) {
+				throw new Error("Can't find any slides");
+			}
+		}
+
 		return this.opts.slides ? this.opts.slides : this.container.children;
 	}
 
@@ -95,6 +102,10 @@ class Config {
 				else {
 					return controllers;
 				}
+			case "undefined":
+				nodes = document.querySelectorAll('[carousel-controller]');
+				nodes = nodes !== null ? Array.from(nodes) : false
+				return nodes;
 
 			default:
 				throw new TypeError(`controllers can only have the following types: string, array/Nodelist`);
@@ -307,8 +318,7 @@ class Config {
 		if(this.opts.startAt) {
 			return this.opts.startAt;
 		}
-
-		return 0;
+		return this.container.children.length -1;
 	}
 
 	set startAt(v) {

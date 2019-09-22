@@ -32,6 +32,9 @@ class Controllers extends Actions {
 		this.next_continue_from = 0;
 		this.swipe_stopped = false;
 		this.mouseenter = false;
+
+		this.setActiveSlide();
+
 		if(Array.isArray(this.slides)) {
 			this.generateSlides();
 		}
@@ -60,17 +63,24 @@ class Controllers extends Actions {
 
 		if(this.drag) {
 			this.container.addEventListener('mousedown', this.onSwipe.bind(this));
-			this.container.addEventListener('mousemove', this.onSwipeStart.bind(this));
+			this.container.addEventListener('mousemove', this.onSwipeStart.bind(this), {passive: true});
 			this.container.addEventListener('mouseup', this.onSwipeEnd.bind(this));
 		}
 
 		if(this.swipe) {
-			this.container.addEventListener('touchstart', this.onSwipe.bind(this));
-			this.container.addEventListener('touchmove', this.onSwipeStart.bind(this));
+			this.container.addEventListener('touchstart', this.onSwipe.bind(this), {passive: true});
+			this.container.addEventListener('touchmove', this.onSwipeStart.bind(this), {passive: true});
 			this.container.addEventListener('touchend', this.onSwipeEnd.bind(this));
 		}
 
+		this.container.addEventListener('contextmenu', (e) => {
+			e.preventDefault();
+			return false;
+		});
 
+		this.container.addEventListener('ondblclick', (e) => {
+			console.log(e);
+		})
 
 	}
 
@@ -79,7 +89,6 @@ class Controllers extends Actions {
 	// }
 
 	onSwipe(e) {
-		e.preventDefault();
 		if(this.pause) {
 			return false;
 		}
@@ -98,7 +107,7 @@ class Controllers extends Actions {
 	}
 
 	onSwipeStart(e) {
-		e.preventDefault();
+		this.mouseenter = true;
 		// if(e.type === 'mousemove' && !e.target.classList.contains('tidyCarousel-slide')) {
 		// 	return false
 		// }
@@ -170,11 +179,13 @@ class Controllers extends Actions {
 						this.end_x = 0;
 						this.start_x = 0;
 						item.removeAttribute('style');
+						this.pause = false;
+						this.shouldRestart();
 					})
 				}
 			}
 		}
-
+		this.mouseenter = false;
 	}
 
 	beforeAnimationStarts() {
@@ -201,12 +212,10 @@ class Controllers extends Actions {
 		if(this.mouseenter) {
 			return false;
 		}
-		else {
-			// this.pause = false;
-			if(this.auto) {
 
-				this.delayTimer();
-			}
+		if(this.auto) {
+
+			this.delayTimer();
 		}
 	}
 
@@ -231,19 +240,22 @@ class Controllers extends Actions {
 						}
 				}
 
-				if(this.opts.afterAnimation) {
+				else {
+					if(this.opts.afterAnimation) {
 
-						this.opts.afterAnimation(this.current_slide)
+							this.opts.afterAnimation(this.container.children[this.current_slide], this.current_slide)
 
-						.then(() => {
-
+							.then((data) => {
+								this.pause = false;
+								this.shouldRestart();
+							})
+					}
+					else {
+						console.log('doesn.')
+							this.pause = false;
 							this.shouldRestart();
-						})
+					}
 				}
-
-			else {
-					this.shouldRestart();
-			}
 		}
 		else {
 			this.pause = false;
@@ -252,7 +264,6 @@ class Controllers extends Actions {
 	}
 
 	onMouseEnter() {
-
 		if(this.pauseOnMouseEnter) {
 			if(this.auto) {
 				window.clearTimeout(this.delay_timer);
@@ -266,10 +277,6 @@ class Controllers extends Actions {
 	}
 
 	onMouseLeave(e) {
-		if(this.auto) {
-			window.clearTimeout(this.delay_timer);
-			this.mouseenter = false;
-		}
 		this.onSwipeEnd(e);
 		let time;
 		// Clearing the delay_timer will restart the delay.
@@ -277,10 +284,9 @@ class Controllers extends Actions {
 
 		if(this.auto) {
 			clearTimeout(this.delay_timer);
-			clearTimeout(this.duration_timer);
+			this.mouseenter = false;
 			this.delayTimer();
 		}
-		return false;
 	}
 
 	delayTimer(e) {
@@ -322,7 +328,6 @@ class Controllers extends Actions {
 	}
 
 	shouldPause(e) {
-
 		const listener_name = this.getDirection(e);
 		const shouldReset = this.shouldReset(listener_name);
 		if(this.pause) {
@@ -331,10 +336,12 @@ class Controllers extends Actions {
 		if(!this.reset && shouldReset) {
 			return false;
 		}
+
 		this.onArrowClick(e);
 	}
 
 	shouldReset(dir) {
+
 		if(dir === 'left') {
 			if(this.next_slide - 1 === -1) {
 				return true;
@@ -351,7 +358,6 @@ class Controllers extends Actions {
 	}
 
 	onArrowClick(e) {
-
 		const listener_name = this.getDirection(e);
 
 		const shouldSwap = this.direction === null ? false : listener_name !== this.direction ;
@@ -458,6 +464,7 @@ class Controllers extends Actions {
 
 	autoControl() {
 		const shouldSwap = this.direction === null ? false : this.autoDirection !== this.direction;
+
 		if(this.pause) {
 			return false;
 		}

@@ -3,8 +3,8 @@ I've built this carousel as a tanks giving to the open-source community, felt li
 
 ## ****Installation****
 
-> `npm install` ****TidyCarousel**** <br/>
-> `yarn add` ****TidyCarousel****
+> `npm install` TidyCarousel <br/>
+> `yarn add` TidyCarousel
 
 ## ****Links of content.****
 
