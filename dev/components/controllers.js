@@ -251,7 +251,6 @@ class Controllers extends Actions {
 							})
 					}
 					else {
-						console.log('doesn.')
 							this.pause = false;
 							this.shouldRestart();
 					}
