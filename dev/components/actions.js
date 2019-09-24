@@ -9,11 +9,11 @@ class Actions extends Config {
 
 	setActivePage() {
 		if(this.next_slide === null) {
-			this.pages[this.startAt].childNodes[0].classList.add('pagerActive');
+			this.pages[this.startAt].classList.add('pagerActive');
 		}
 		else {
-			this.pages[this.current_slide].childNodes[0].classList.remove('pagerActive');
-			this.pages[this.next_slide].childNodes[0].classList.add('pagerActive');
+			this.pages[this.current_slide].classList.remove('pagerActive');
+			this.pages[this.next_slide].classList.add('pagerActive');
 		}
 	}
 
@@ -94,7 +94,7 @@ class Actions extends Config {
 		let i,elements;
 		for(i = 0; i <= this.slides.length - 1; i ++) {
 			container
-			.insertAdjacentHTML('beforeend', `<li><a href="#" id="${i}"></a></li>`)
+			.insertAdjacentHTML('beforeend', `<li class="tidyCarousel-pager--page" id="${i}"></li>`)
 		}
 
 		elements = container instanceof NodeList ? container[0].childNodes : container.childNodes;

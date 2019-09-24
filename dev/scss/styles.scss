@@ -15,7 +15,7 @@ body {
 }
 
 .pagerActive {
-	background: #0071bc;
+	background: #fff;
 }
 
 /*The height is required in order to see the image*/
@@ -50,15 +50,6 @@ body {
 	margin: 0;
 	padding: 0;
 }
-
-// .carousel-controlls {
-// 	display: flex;
-// 	width: 100%;
-// 	background: #399;
-// 	top: 0;
-// 	left: 0;
-// 	height: 100%;
-// }
 
 button[carousel-controller] {
 	position: absolute;
@@ -99,6 +90,28 @@ button[carousel-controller~="right"] {
 
 .third {
 	background: #435;
+}
+
+.tidyCarousel-pager {
+	position: relative;
+	margin: 0;
+	padding: 0;
+	z-index: 100;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transform: translateY(-25px);
+	.tidyCarousel-pager--page {
+
+			margin: 0 5px;
+			width: 10px;
+			height: 10px;
+			border-radius: 100%;
+			border: 1px solid #f1f1f1;
+			cursor: pointer;
+			list-style-type: none;
+	}
 }
 
 /*Temporary*/

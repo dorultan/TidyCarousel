@@ -21,4 +21,6 @@ class TidyCarousel extends Controllers {
 		super(opts);
 	}
 }
+
+// new TidyCarousel({pager: true});
 export default TidyCarousel;
