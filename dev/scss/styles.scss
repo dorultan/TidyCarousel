@@ -43,6 +43,12 @@ body {
 	width: inherit;
 	height: inherit;
 	display: block;
+	user-drag: none;
+	user-select: none;
+	-moz-user-select: none;
+	-webkit-user-drag: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
 }
 
 button.tidy__carousel-controller[carousel-controller] {
@@ -57,8 +63,14 @@ button.tidy__carousel-controller[carousel-controller] {
 	border: none;
 	z-index: 10;
 	display: block;
-	background: #f1f1f1;
-
+	background: #fff;
+	user-drag: none;
+	user-select: none;
+	-moz-user-select: none;
+	-webkit-user-drag: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	outline: none;
 
 	svg {
 		position: absolute;
@@ -67,6 +79,12 @@ button.tidy__carousel-controller[carousel-controller] {
 		width: 60%;
 		height: 60%;
 		cursor: pointer;
+		user-drag: none;
+		user-select: none;
+		-moz-user-select: none;
+		-webkit-user-drag: none;
+		-webkit-user-select: none;
+		-ms-user-select: none;
 	}
 }
 button.tidy__carousel-controller[carousel-controller~="left"] {
@@ -86,6 +104,13 @@ button.tidy__carousel-controller[carousel-controller~="right"] {
 	align-items: center;
 	justify-content: center;
 	transform: translateY(-25px);
+	user-drag: none;
+	user-select: none;
+	-moz-user-select: none;
+	-webkit-user-drag: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+
 	.tidy__carousel-pager--page {
 
 			margin: 0 5px;
@@ -95,7 +120,25 @@ button.tidy__carousel-controller[carousel-controller~="right"] {
 			border: 1px solid #f1f1f1;
 			cursor: pointer;
 			list-style-type: none;
+			user-drag: none;
+			user-select: none;
+			-moz-user-select: none;
+			-webkit-user-drag: none;
+			-webkit-user-select: none;
+			-ms-user-select: none;
 	}
 }
 
 /*Temporary*/
+
+.first {
+  background: #9843ff;
+}
+
+.second {
+  background: #128733;
+}
+
+.third {
+  background: #092333;
+}
