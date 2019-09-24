@@ -22,5 +22,5 @@ class TidyCarousel extends Controllers {
 	}
 }
 
-// new TidyCarousel({pager: true});
+new TidyCarousel({pager: true});
 export default TidyCarousel;

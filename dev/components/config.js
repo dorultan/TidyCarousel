@@ -25,7 +25,7 @@ class Config {
 			case 'object':
 				return container;
 			default:
-				return document.querySelector('.tidyCarousel');
+				return document.querySelector('.tidy__carousel');
 		}
 	}
 

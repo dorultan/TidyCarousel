@@ -42,26 +42,28 @@ I've built this carousel as a tanks giving to the open-source community, felt li
 
 ### Html
 ```html
-<main class="carousel">
- <div class="carousel-slider">
-   <div class="carousel-slider"
- </div>
- <div class="carousel-controlls">
-  <a href="#" id="carousel-controller" carousel-controller="left">Slide left</a>
-  <a href="#" id="carousel-controller" carousel-controller="right">Slide right</a>
- </div>
- <div class="multiple-controlls">
-<ul class="multiple__controlls-list" carousel-pager>
+
+<div class="tidyCarousel">
+  <!-- Here goes all the slides -->
+  <div class="tidyCarousel-slide"><div class="first"></div></div>
+  <div class="tidyCarousel-slide"><div class="second"></div></div>
+  <div class="tidyCarousel-slide"><div class="third"></div></div>
+
+</div>
+<button type="button" carousel-controller="left">
+  <
+</button>
+<button type="button" carousel-controller="right">
+  >
+</button>
+<ul class="tidyCarousel-pager" carousel-pager>
 </ul>
- </div>
-</main>
 ```
 ### Javascript.
 -----------------
 ```js
- import Carousel from 'carousel';
+ import TidyCarousel from 'tidy-carousel';
 
- const opts = {}; // your options.
- const carousel = new Carousel(opts);
+ const config = {}; // See: https://github.com/dorultan/tidy-carousel#configuration.
+ const carousel = new Carousel(config);
 ```
-

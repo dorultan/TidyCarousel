@@ -94,7 +94,7 @@ class Actions extends Config {
 		let i,elements;
 		for(i = 0; i <= this.slides.length - 1; i ++) {
 			container
-			.insertAdjacentHTML('beforeend', `<li class="tidyCarousel-pager--page" id="${i}"></li>`)
+			.insertAdjacentHTML('beforeend', `<li class="tidy__carousel-pager--page" id="${i}"></li>`)
 		}
 
 		elements = container instanceof NodeList ? container[0].childNodes : container.childNodes;
@@ -120,7 +120,7 @@ class Actions extends Config {
 
 		for(let i = 0; i <= this.slides.length - 1; i ++) {
 			container
-			.insertAdjacentHTML('beforeend', `<div class="tidyCarousel-slide">${this.slides[i].node ? forNode(i) : forImgSrc(i)}</div>`);
+			.insertAdjacentHTML('beforeend', `<div class="tidy__carousel-slide">${this.slides[i].node ? forNode(i) : forImgSrc(i)}</div>`);
 
 			if(i === this.startAt) {
 				container.children[i].classList.add('current-slide');
