@@ -2,12 +2,7 @@
 I've built this carousel as a tanks giving to the open-source community, felt like was missing this type of carousel. This carousel works in clean order without manipulating parent's margin/translateX. It transforms the X axis of the current and the chosen slide from the stack using the built in Animate API.
 
 ## ****Installation****
-
-<<<<<<< HEAD
-> `npm install` TidyCarousel <br/>
-=======
-> `npm install` TidyCarousel<br/>
->>>>>>> 10b33e796298280f43ee4c95b8c433940dee0541
+> `npm install` TidyCarousel </br>
 > `yarn add` TidyCarousel
 
 ## ****Links of content.****
