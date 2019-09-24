@@ -1,4 +1,5 @@
-# ****Tidy carousel****
+# ****Tidy carousel**** [![Build Status](https://travis-ci.com/dorultan/tidy-carousel.svg?branch=master)](https://travis-ci.com/dorultan/tidy-carousel)
+
 I've built this carousel as a tanks giving to the open-source community, felt like was missing this type of carousel. This carousel works in clean order without manipulating parent's margin/translateX. It transforms the X axis of the current and the chosen slide from the stack using the built in Animate API.
 
 ## ****Installation****
