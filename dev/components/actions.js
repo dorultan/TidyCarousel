@@ -8,13 +8,8 @@ class Actions extends Config {
 	}
 
 	setActivePage() {
-		if(this.next_slide === null) {
-			this.pages[this.startAt].classList.add('pagerActive');
-		}
-		else {
-			this.pages[this.current_slide].classList.remove('pagerActive');
-			this.pages[this.next_slide].classList.add('pagerActive');
-		}
+		this.pages[this.current_slide].classList.remove('page-active');
+		this.pages[this.next_slide].classList.add('page-active');
 	}
 
 	doAnimation(dir, current_from, next_from, not_complete) {
@@ -100,12 +95,9 @@ class Actions extends Config {
 		}
 
 		elements = container instanceof NodeList ? container[0].childNodes : container.childNodes;
-
-		elements.forEach(e => {
-			if(e.nodeName !== '#text') {
-				this.pages.push(e);
-			}
-		})
+		this.pages = Array.from(elements);
+		this.pages.shift();
+		this.pages[this.startAt].classList.add('page-active');
 	}
 
 	generateSlides() {
@@ -133,6 +125,23 @@ class Actions extends Config {
 	setActiveSlide() {
 		if(this.slides === null) {
 			this.container.children[this.startAt].classList.add('current-slide');
+			if(this.opts.beforeAnimation) {
+				this.beforeAnimationStarts();
+			}
+
+			if(this.opts.afterAnimation) {
+				this.afterAnimationEnds();
+			}
+		}
+		else {
+
+			if(this.slides[this.startAt].beforeAnimation) {
+				this.beforeAnimationStarts();
+			}
+
+			if(this.slides[this.startAt].afterAnimation) {
+				this.afterAnimationEnds();
+			}
 		}
 	}
 }

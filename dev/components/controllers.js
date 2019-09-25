@@ -20,8 +20,8 @@ class Controllers extends Actions {
 	constructor(props) {
 		super(props);
 		this.pause = false;
-		this.current_slide = this.startAt || null;
-		this.next_slide = null;
+		this.current_slide = this.startAt;
+		this.next_slide = this.startAt;
 		this.delay_timer = 0;
 		this.duration_timer = 0;
 		this.direction = null;
@@ -32,20 +32,19 @@ class Controllers extends Actions {
 		this.next_continue_from = 0;
 		this.swipe_stopped = false;
 		this.mouseenter = false;
-		this.setActiveSlide();
+
 
 		if(Array.isArray(this.slides)) {
 			this.generateSlides();
 		}
+
 		if(this.pager) {
 			this.generatePager();
-			this.setActivePage();
-
-
 			this.pages.forEach(btn => {
 				btn.addEventListener('click', this.onPagerClick.bind(this));
 			})
 		}
+		this.setActiveSlide();
 
 		if(this.auto) {
 			let trigger = this.delayTimer();
@@ -73,10 +72,6 @@ class Controllers extends Actions {
 		}
 
 	}
-
-	// isTouch(e) {
-	// 		if(e.type)
-	// }
 
 	onSwipe(e) {
 		if(this.pause) {
