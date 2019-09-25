@@ -74,14 +74,11 @@ class Controllers extends Actions {
 	}
 
 	onSwipe(e) {
-		if(this.pause) {
+		if(this.pause || this.dragable) {
 			return false;
 		}
 
-		// if(e.type === 'mousedown' && !e.target.classList.contains('tidyCarousel-slide')) {
-		// 	return false;
-		// }
-		if(this.start_x - this.end_x !== 0 && this.swipe_stopped || this.swipe_stopped) {
+		if(this.start_x - this.end_x !== 0 && this.swipe_stopped) {
 			return false;
 		}
 
@@ -203,8 +200,8 @@ class Controllers extends Actions {
 			this.delayTimer();
 		}
 	}
-
-	afterAnimationEnds() {
+	// @param timer: boolean
+	afterAnimationEnds(timer) {
 		this.swipe_stopped = false;
 		this.pause = true;
 
@@ -217,12 +214,13 @@ class Controllers extends Actions {
 
 							.then(() => {
 								this.pause = false;
-								this.shouldRestart();
+
+									this.shouldRestart();
 							})
 						}
 						else {
 							this.pause = false;
-							this.shouldRestart();
+								this.shouldRestart();
 						}
 				}
 

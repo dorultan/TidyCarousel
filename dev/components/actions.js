@@ -15,16 +15,17 @@ class Actions extends Config {
 	doAnimation(dir, current_from, next_from, not_complete) {
 		// set the active pager.
 		// ======================
+		const total_slides = this.container.children.length - 1;
 		let direction = dir ? dir : this.direction;
 		let next_slide = null;
 		if(not_complete) {
 
 			if(this.direction === 'left') {
-				next_slide = this.current_slide - 1 === -1 ? this.slides.length - 1 : this.current_slide -1;
+				next_slide = this.current_slide - 1 === -1 ? total_slides : this.current_slide -1;
 			}
 
 			if(this.direction === 'right') {
-				next_slide = this.current_slide + 1 > this.slides.length -1 ? 0 : this.current_slide + 1;
+				next_slide = this.current_slide + 1 > total_slides ? 0 : this.current_slide + 1;
 			}
 
 		}
