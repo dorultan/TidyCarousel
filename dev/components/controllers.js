@@ -32,7 +32,6 @@ class Controllers extends Actions {
 		this.next_continue_from = 0;
 		this.swipe_stopped = false;
 		this.mouseenter = false;
-
 		this.setActiveSlide();
 
 		if(Array.isArray(this.slides)) {
@@ -98,6 +97,7 @@ class Controllers extends Actions {
 	}
 
 	onSwipeStart(e) {
+		const total_slides = this.container.children.length -1;
 		this.mouseenter = true;
 		// if(e.type === 'mousemove' && !e.target.classList.contains('tidyCarousel-slide')) {
 		// 	return false
@@ -116,11 +116,11 @@ class Controllers extends Actions {
 			this.current_continue_from = (this.end_x - this.start_x) * 100 / total;
 			this.next_continue_from = (this.start_x - this.end_x) * 100 / total;
 			if(this.direction === 'left') {
-				this.next_slide = this.current_slide -1 < 0 ? this.slides.length -1 : this.current_slide -1;
+				this.next_slide = this.current_slide -1 < 0 ? total_slides : this.current_slide -1;
 			}
 
 			if(this.direction === 'right') {
-				this.next_slide = this.current_slide + 1 > this.slides.length -1 ? 0 : this.current_slide + 1;
+				this.next_slide = this.current_slide + 1 > total_slides ? 0 : this.current_slide + 1;
 			}
 			this.swipeAnimation(this.current_continue_from, this.next_continue_from);
 		}
@@ -128,6 +128,7 @@ class Controllers extends Actions {
 
 	onSwipeEnd(e) {
 		e.preventDefault();
+		const total_slides = this.container.children.length -1;
 
 		this.dragable = false;
 		if(this.swipe_stopped || this.end_x === 0) {
@@ -144,11 +145,11 @@ class Controllers extends Actions {
 				this.end_x = 0;
 				this.start_x = 0;
 				if(this.direction === 'left') {
-					this.current_slide = this.current_slide -1 === -1 ? this.slides.length -1 : this.current_slide -1;
+					this.current_slide = this.current_slide -1 === -1 ? total_slides : this.current_slide -1;
 				}
 
 				if(this.direction === 'right') {
-					this.current_slide = this.current_slide + 1 > this.slides.length -1 ? 0 : this.current_slide + 1;
+					this.current_slide = this.current_slide + 1 > total_slides ? 0 : this.current_slide + 1;
 				}
 
 				for(let item of this.container.children) {
@@ -328,7 +329,7 @@ class Controllers extends Actions {
 	}
 
 	shouldReset(dir) {
-
+		let total_slides = this.container.length - 1;
 		if(dir === 'left') {
 			if(this.next_slide - 1 === -1) {
 				return true;
@@ -336,7 +337,7 @@ class Controllers extends Actions {
 		}
 
 		if(dir === 'right') {
-			if(this.next_slide + 1 > this.slides.length -1) {
+			if(this.next_slide + 1 > total_slides) {
 				return true;
 			}
 		}
@@ -346,6 +347,7 @@ class Controllers extends Actions {
 
 	onArrowClick(e) {
 		const listener_name = this.getDirection(e);
+		const total_slides = this.container.children.length -1;
 
 		const shouldSwap = this.direction === null ? false : listener_name !== this.direction ;
 		this.mouseenter = false;
@@ -365,11 +367,11 @@ class Controllers extends Actions {
 
 		if(shouldSwap && this.next_slide === this.current_slide) {
 			if(listener_name === 'left' && this.current_slide !== null && this.next_slide !== null) {
-				this.next_slide = this.current_slide - 1 === -1 ? this.slides.length -1 : this.current_slide - 1;
+				this.next_slide = this.current_slide - 1 === -1 ? total_slides : this.current_slide - 1;
 			}
 
 			if(listener_name === 'right' && this.current_slide !== null && this.next_slide !== null) {
-				this.next_slide = this.current_slide + 1 > this.slides.length - 1 ? 0 : this.current_slide + 1;
+				this.next_slide = this.current_slide + 1 > total_slides ? 0 : this.current_slide + 1;
 			}
 			this.direction = listener_name;
 		}
@@ -377,16 +379,16 @@ class Controllers extends Actions {
 		if(listener_name === 'left' && !shouldSwap) {
 
 			if(this.current_slide && this.next_slide === null) {
-				this.next_slide = this.current_slide - 1 === -1 ? this.slides.length -1 : this.current_slide - 1;
+				this.next_slide = this.current_slide - 1 === -1 ? total_slides : this.current_slide - 1;
 			}
 
 			else if(this.next_slide === this.current_slide && this.current_slide !== null && this.next_slide !== null) {
-				this.next_slide = this.current_slide - 1 === -1 ? this.slides.length -1 : this.current_slide - 1;
+				this.next_slide = this.current_slide - 1 === -1 ? total_slides : this.current_slide - 1;
 			}
 
 			else {
-				this.current_slide = this.current_slide === null ? 0 : (this.current_slide - 1) === -1 ? this.slides.length -1 : this.current_slide -1;
-				this.next_slide = this.next_slide === null ? this.slides.length - 1 : this.current_slide === 0 ? this.slides.length - 1 : this.current_slide -1;
+				this.current_slide = this.current_slide === null ? 0 : (this.current_slide - 1) === -1 ? total_slides : this.current_slide -1;
+				this.next_slide = this.next_slide === null ? total_slides : this.current_slide === 0 ? total_slides : this.current_slide -1;
 			}
 
 			this.direction = listener_name;
@@ -395,16 +397,16 @@ class Controllers extends Actions {
 
 		if(listener_name === 'right' && !shouldSwap) {
 			if(this.current_slide && this.next_slide === null) {
-				this.next_slide = this.current_slide + 1 > this.slides.length - 1? 0 : this.current_slide + 1;
+				this.next_slide = this.current_slide + 1 > total_slides ? 0 : this.current_slide + 1;
 			}
 
 			else if(this.next_slide === this.current_slide && this.current_slide !== null && this.next_slide !== null) {
 
-				this.next_slide = this.current_slide + 1 > this.slides.length - 1? 0 : this.current_slide + 1;
+				this.next_slide = this.current_slide + 1 > total_slides ? 0 : this.current_slide + 1;
 			}
 			else {
-				this.current_slide = this.current_slide === null ? 0 : this.current_slide + 1 > (this.slides.length -1) ? 0 : this.current_slide + 1;
-				this.next_slide = this.next_slide === null ? 1 : this.current_slide + 1 > this.slides.length -1 ? 0 : this.current_slide + 1;
+				this.current_slide = this.current_slide === null ? 0 : this.current_slide + 1 > (total_slides) ? 0 : this.current_slide + 1;
+				this.next_slide = this.next_slide === null ? 1 : this.current_slide + 1 > total_slides ? 0 : this.current_slide + 1;
 			}
 
 			this.direction = listener_name;
@@ -451,6 +453,7 @@ class Controllers extends Actions {
 
 	autoControl() {
 		const shouldSwap = this.direction === null ? false : this.autoDirection !== this.direction;
+		const total_slides = this.container.children.length -1;
 
 		if(this.pause) {
 			return false;
@@ -468,11 +471,11 @@ class Controllers extends Actions {
 			if(this.next_slide === this.current_slide) {
 
 				if(this.autoDirection === 'left') {
-					this.next_slide = this.current_slide -1 === -1 ? this.slides.length  -1 : this.current_slide - 1;
+					this.next_slide = this.current_slide -1 === -1 ? total_slides : this.current_slide - 1;
 				}
 
 				if(this.autoDirection === 'right') {
-					this.next_slide = this.current_slide + 1 > this.slides.length ? 0 : this.current_slide + 1;
+					this.next_slide = this.current_slide + 1 > total_slides + 1 ? 0 : this.current_slide + 1;
 				}
 			}
 		}
@@ -480,31 +483,31 @@ class Controllers extends Actions {
 
 		if(this.autoDirection === 'left' && !shouldSwap) {
 			if(this.current_slide && this.next_slide === null) {
-					this.next_slide = this.current_slide - 1 === -1 ? this.slides.length -1 : this.current_slide - 1;
+					this.next_slide = this.current_slide - 1 === -1 ? total_slides : this.current_slide - 1;
 			}
 
 			else if(this.next_slide === this.current_slide && this.current_slide !== null && this.next_slide !== null) {
-					this.next_slide = this.current_slide - 1 === -1 ? this.slides.length -1 : this.current_slide - 1;
+					this.next_slide = this.current_slide - 1 === -1 ? total_slides : this.current_slide - 1;
 				}
 
 			else {
-				this.current_slide = this.current_slide === null ? 0 : (this.current_slide - 1) === -1 ? this.slides.length -1 : this.current_slide -1;
-				this.next_slide = this.next_slide === null ? this.slides.length - 1 : this.current_slide === 0 ? this.slides.length - 1 : this.current_slide -1;
+				this.current_slide = this.current_slide === null ? 0 : (this.current_slide - 1) === -1 ? total_slides : this.current_slide -1;
+				this.next_slide = this.next_slide === null ? total_slides : this.current_slide === 0 ? total_slides : this.current_slide -1;
 			}
 		}
 
 		else if(this.autoDirection === 'right' && !shouldSwap) {
 
 			if(this.current_slide && this.next_slide === null) {
-				this.next_slide = this.current_slide + 1 === this.slides.length ? 0 : this.current_slide + 1;
+				this.next_slide = this.current_slide + 1 === total_slides + 1 ? 0 : this.current_slide + 1;
 			}
 
 			else if(this.next_slide === this.current_slide && this.current_slide !== null && this.next_slide !== null) {
-				this.next_slide = this.current_slide + 1 === this.slides.length ? 0 : this.current_slide + 1;
+				this.next_slide = this.current_slide + 1 === total_slides + 1 ? 0 : this.current_slide + 1;
 			}
 			else {
-				this.current_slide = this.current_slide === null ? 0 : this.current_slide + 1 > (this.slides.length -1) ? 0 : this.current_slide + 1;
-				this.next_slide = this.next_slide === null ? 1 : this.current_slide + 1 > this.slides.length -1 ? 0 : this.current_slide + 1;
+				this.current_slide = this.current_slide === null ? 0 : this.current_slide + 1 > total_slides ? 0 : this.current_slide + 1;
+				this.next_slide = this.next_slide === null ? 1 : this.current_slide + 1 > total_slides ? 0 : this.current_slide + 1;
 			}
 		}
 		this.direction = this.autoDirection;

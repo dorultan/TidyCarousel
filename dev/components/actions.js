@@ -91,8 +91,10 @@ class Actions extends Config {
 
 	generatePager () {
 		const container = this.pager instanceof NodeList ? this.pager[0] : this.pager;
+		const total_slides = this.container.children.length -1;
+
 		let i,elements;
-		for(i = 0; i <= this.slides.length - 1; i ++) {
+		for(i = 0; i <= total_slides; i ++) {
 			container
 			.insertAdjacentHTML('beforeend', `<li class="tidy__carousel-pager--page" id="${i}"></li>`)
 		}
@@ -129,8 +131,8 @@ class Actions extends Config {
 	}
 
 	setActiveSlide() {
-		if(!this.slides.length) {
-			this.container.children[this.startAt].classList.add('current_slide');
+		if(this.slides === null) {
+			this.container.children[this.startAt].classList.add('current-slide');
 		}
 	}
 }

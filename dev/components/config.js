@@ -70,7 +70,7 @@ class Config {
 			}
 		}
 
-		return this.opts.slides ? this.opts.slides : this.container.children;
+		return this.opts.slides ? this.opts.slides : null;
 	}
 
 	set slides(v) {
@@ -315,7 +315,7 @@ class Config {
 	}
 
 	get startAt() {
-		if(this.opts.startAt) {
+		if(this.opts.startAt !== undefined) {
 			return this.opts.startAt;
 		}
 		return Array.isArray(this.slides) ? this.slides.length -1 : this.container.children.length -1 !== -1 ? this.container.children.length -1 : 0;
@@ -325,6 +325,17 @@ class Config {
 
 		if(typeof v !== 'number') {
 			throw new TypeError(`'startAt' should be a number, received instead. ${typeof v}`);
+		}
+
+		if(Array.isArray(this.slides) && this.slides.length) {
+
+			if(v >= this.slides.length) {
+				throw new Error(`'startAt' should be a number <= the total slides counting from 0.`);
+			}
+		}
+		else if(v >= this.container.children.length) {
+
+			throw new Error(`'startAt' should be a number <= the total slides counting from 0.`);
 		}
 
 		return v;
