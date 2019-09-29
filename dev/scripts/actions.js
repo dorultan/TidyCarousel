@@ -88,7 +88,7 @@ class Actions extends Config {
 	generatePager () {
 		const container = this.pager instanceof NodeList ? this.pager[0] : this.pager;
 		const total_slides = this.container.children.length -1;
-
+		
 		let i,elements;
 		for(i = 0; i <= total_slides; i ++) {
 			container
@@ -97,11 +97,10 @@ class Actions extends Config {
 
 		elements = container instanceof NodeList ? container[0].childNodes : container.childNodes;
 		this.pages = Array.from(elements);
-
-		if(this.pages.length > total_slides) {
+		if(this.pages.length > total_slides + 1) {
 			this.pages.shift();
 		}
-		
+
 		this.pages[this.startAt].classList.add('page-active');
 	}
 
