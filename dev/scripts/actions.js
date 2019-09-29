@@ -110,7 +110,7 @@ class Actions extends Config {
 		}
 
 		const forNode = (i) => {
-			return `${this.slides[i].node}`;
+			return `${this.slides[i].html}`;
 		}
 
 		for(let i = 0; i <= this.slides.length - 1; i ++) {

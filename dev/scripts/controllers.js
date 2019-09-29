@@ -301,11 +301,11 @@ class Controllers extends Actions {
 	getDirection(e) {
 		const button = e.path.filter((e) => {
 			if(e.attributes) {
-				 return e.hasAttribute('carousel-controller');
+				 return e.hasAttribute('data-carousel-controller');
 			}
 		});
 
-		return button[0].attributes.getNamedItem('carousel-controller').value;
+		return button[0].attributes.getNamedItem('data-carousel-controller').value;
 	}
 
 	shouldPause(e) {
