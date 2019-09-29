@@ -97,7 +97,11 @@ class Actions extends Config {
 
 		elements = container instanceof NodeList ? container[0].childNodes : container.childNodes;
 		this.pages = Array.from(elements);
-		this.pages.shift();
+
+		if(this.pages.length > total_slides) {
+			this.pages.shift();
+		}
+		
 		this.pages[this.startAt].classList.add('page-active');
 	}
 
