@@ -51,7 +51,7 @@ body {
 	-ms-user-select: none;
 }
 
-button.tidy__carousel-controller[carousel-controller] {
+button.tidy__carousel-controller[data-carousel-controller] {
 	position: absolute;
 	transform: translateY(-50%);
 	z-index: 1000;
@@ -87,14 +87,14 @@ button.tidy__carousel-controller[carousel-controller] {
 		-ms-user-select: none;
 	}
 }
-button.tidy__carousel-controller[carousel-controller~="left"] {
+button.tidy__carousel-controller[data-carousel-controller~="left"] {
 	left: 10px;
 }
-button.tidy__carousel-controller[carousel-controller~="right"] {
+button.tidy__carousel-controller[data-carousel-controller~="right"] {
 	right: 10px;
 }
 
-.tidy__carousel-pager {
+.tidy__carousel-pager[data-carousel-pager] {
 	position: relative;
 	margin: 0;
 	padding: 0;
