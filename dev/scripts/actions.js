@@ -115,7 +115,7 @@ class Actions extends Config {
 
 		for(let i = 0; i <= this.slides.length - 1; i ++) {
 			container
-			.insertAdjacentHTML('beforeend', `<div class="tidy__carousel-slide">${this.slides[i].node ? forNode(i) : forImgSrc(i)}</div>`);
+			.insertAdjacentHTML('beforeend', `<div class="tidy__carousel-slide">${this.slides[i].html ? forNode(i) : forImgSrc(i)}</div>`);
 
 			if(i === this.startAt) {
 				container.children[i].classList.add('current-slide');

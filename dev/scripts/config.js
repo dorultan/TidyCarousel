@@ -86,7 +86,7 @@ class Config {
 		let nodes;
 		switch (typeof controllers) {
 			case 'boolean':
-				nodes = document.querySelectorAll('[carousel-controller]');
+				nodes = document.querySelectorAll('[data-carousel-controller]');
 
 				return controllers ? nodes : false;
 
@@ -103,7 +103,7 @@ class Config {
 					return controllers;
 				}
 			case "undefined":
-				nodes = document.querySelectorAll('[carousel-controller]');
+				nodes = document.querySelectorAll('[data-carousel-controller]');
 				nodes = nodes !== null ? Array.from(nodes) : false
 				return nodes;
 
@@ -347,7 +347,7 @@ class Config {
 
 		switch (typeof opts.pager) {
 			case 'boolean':
-				const pager = document.querySelector('ul[carousel-pager]');
+				const pager = document.querySelector('ul[data-carousel-pager]');
 				return opts.pager && pager ? pager : false;
 
 			case 'object':
@@ -377,7 +377,7 @@ class Config {
 		switch (typeof v) {
 			case 'boolean':
 
-				const pager = document.querySelector('ul[carousel-pager]');
+				const pager = document.querySelector('ul[data-carousel-pager]');
 				return opts.pager && pager ? pager : false;
 
 				return false;

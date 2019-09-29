@@ -1,4 +1,4 @@
-import Controllers from './components/controllers';
+import Controllers from './scripts/controllers';
 import './scss/styles.scss';
 
 

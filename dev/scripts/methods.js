@@ -1,4 +1,3 @@
-
 // @animate: {
 // 	- Write  a wrap of the method animate provided by the browser. That will loop over an array of
 // 	elements.
