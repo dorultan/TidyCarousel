@@ -227,7 +227,7 @@ class Controllers extends Actions {
 				else {
 					if(this.opts.afterAnimation) {
 
-							this.opts.afterAnimation(this.container.children[this.current_slide], this.current_slide)
+							this.opts.afterAnimation(this.container.children[this.next_slide], this.next_slide)
 
 							.then((data) => {
 								this.pause = false;
