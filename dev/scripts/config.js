@@ -32,7 +32,7 @@ class Config {
 
 	get container () {
 		const {opts: {container}} = this;
-		const name = this.name && `[name="${this.name}"]`;
+		const name = this.name && `[data-name="${this.name}"]`;
 
 		switch (typeof container) {
 			case 'string':
@@ -46,7 +46,7 @@ class Config {
 
 	set container(value) {
 		let container;
-		const name = this.name && `[name="${this.name}"]`;
+		const name = this.name && `[data-name="${this.name}"]`;
 
 		switch (typeof value) {
 			case 'string':
@@ -101,7 +101,7 @@ class Config {
 	get controllers () {
 		const {opts:{controllers}} = this;
 		let nodes;
-		let	name = this.name && `[for="${this.name}"]`;
+		let	name = this.name && `[data-for="${this.name}"]`;
 		switch (typeof controllers) {
 			case 'boolean':
 				nodes = document.querySelectorAll(`[data-carousel-controller]${name !== null ? name : ''}`);
@@ -133,7 +133,7 @@ class Config {
 	set controllers(value) {
 		const {opts: {controllers}} = this;
 		let nodes;
-		let	name = this.name && `[for="${this.name}"]`;
+		let	name = this.name && `[data-for="${this.name}"]`;
 
 		switch (typeof value) {
 			case 'boolean':
@@ -363,7 +363,7 @@ class Config {
 	get pager() {
 		// If the opts.pager is a boolean and is true, try document.querySelector(ul[carousel-pager])
 		const {opts} = this;
-		let	name = this.name && `[for="${this.name}"]`;
+		let	name = this.name && `[data-for="${this.name}"]`;
 
 		switch (typeof opts.pager) {
 			case 'boolean':
@@ -394,7 +394,7 @@ class Config {
 
 	set pager(v) {
 		const {opts} = this;
-		let	name = this.name && `[for="${this.name}"]`;
+		let	name = this.name && `[data-for="${this.name}"]`;
 		switch (typeof v) {
 			case 'boolean':
 
