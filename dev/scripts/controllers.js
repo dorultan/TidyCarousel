@@ -249,7 +249,7 @@ class Controllers extends Actions {
 	onMouseEnter() {
 		if(this.pauseOnMouseEnter) {
 			if(this.auto) {
-				window.clearTimeout(this.delay_timer);
+				clearTimeout(this.delay_timer);
 				this.mouseenter = true;
 			}
 		}
@@ -264,6 +264,7 @@ class Controllers extends Actions {
 		// ================================================
 
 		if(this.auto) {
+			clearTimeout(this.duration_timer);
 			clearTimeout(this.delay_timer);
 			this.mouseenter = false;
 			this.delayTimer();
@@ -272,8 +273,8 @@ class Controllers extends Actions {
 
 	delayTimer(e) {
 		if(!this.pause) {
-			this.delay_timer = window.setTimeout(() => {
-			// clearTimeout(trigger);
+			this.delay_timer = setTimeout(() => {
+
 				if(this.autoDirection && !this.mouseenter) {
 					this.durationTimer();
 				}
@@ -285,11 +286,12 @@ class Controllers extends Actions {
 		const shouldReset = this.shouldReset(this.autoDirection);
 
 		if(!this.pause) {
-			this.duration_timer = window.setTimeout(() => {
+			this.duration_timer = setTimeout(() => {
 				this.delayTimer();
+				clearTimeout(this.delay_timer);
 
 				if(!this.reset && shouldReset) {
-					return window.clearTimeout(this.delay_timer);
+					return clearTimeout(this.delay_timer);
 				}
 
 				this.autoControl();
