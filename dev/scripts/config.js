@@ -32,14 +32,15 @@ class Config {
 
 	get container () {
 		const {opts: {container}} = this;
+		const name = this.name && `[name="${this.name}"]`;
 
 		switch (typeof container) {
 			case 'string':
-				return document.querySelector(`${container}[name="${this.name}"]`);
+				return document.querySelector(`${container + (name !== null ? name : '')}`);
 			case 'object':
 				return container;
 			default:
-				return document.querySelector(`.tidy__carousel[name="${this.name}"]`);
+				return document.querySelector(`.tidy__carousel${name !== null ? name : ''}`);
 		}
 	}
 
@@ -49,7 +50,7 @@ class Config {
 
 		switch (typeof value) {
 			case 'string':
-					container = document.querySelector(value + name);
+					container = document.querySelector(value + (name !== null ? name : ''));
 
 					if(container === null) {
 						throw new TypeError(`Could not find any maching element for "${value}" with the name ${this.name}. Make sure the element is loaded before initializing.`)
@@ -103,12 +104,12 @@ class Config {
 		let	name = this.name && `[for="${this.name}"]`;
 		switch (typeof controllers) {
 			case 'boolean':
-				nodes = document.querySelectorAll(`[data-carousel-controller]${name}`);
+				nodes = document.querySelectorAll(`[data-carousel-controller]${name !== null ? name : ''}`);
 
 				return controllers ? nodes : false;
 
 			case 'string':
-				nodes = document.querySelectorAll(`${controllers + name}`);
+				nodes = document.querySelectorAll(`${controllers + (name !== null ? name : '')}`);
 				return nodes;
 
 			case 'object':
@@ -120,7 +121,7 @@ class Config {
 					return controllers;
 				}
 			case "undefined":
-				nodes = document.querySelectorAll(`[data-carousel-controller]${name}`);
+				nodes = document.querySelectorAll(`[data-carousel-controller]${name !== null ? name : ''}`);
 				nodes = nodes !== null ? Array.from(nodes) : false
 				return nodes;
 
@@ -136,7 +137,7 @@ class Config {
 
 		switch (typeof value) {
 			case 'boolean':
-				nodes = document.querySelectorAll(`[carousel-controller]${name}`);
+				nodes = document.querySelectorAll(`[carousel-controller]${name !== null ? name : ''}`);
 
 				if(value && !nodes.length) {
 					throw new TypeError(`Could not find any element containing the attribute of carousel-controller. Bind this attribute [carousel-controller] to an element specify the value lef/right.`)
@@ -145,7 +146,7 @@ class Config {
 				return value && nodes ? nodes : false;
 
 			case 'string':
-				nodes = document.querySelectorAll(`${controllers + name}`);
+				nodes = document.querySelectorAll(`${controllers + (name !== null ? name : '')}`);
 				if(!nodes.length) {
 					throw new TypeError(`Could not find any element containing the attribute of carousel-controller. Bind this attribute [carousel-controller] to an element specify the value lef/right.`)
 				}
@@ -366,7 +367,7 @@ class Config {
 
 		switch (typeof opts.pager) {
 			case 'boolean':
-				const pager = document.querySelector(`ul[data-carousel-pager]${name}`);
+				const pager = document.querySelector(`ul[data-carousel-pager]${name !== null ? name : ''}`);
 				return opts.pager && pager ? pager : false;
 
 			case 'object':
@@ -380,7 +381,7 @@ class Config {
 					throw new TypeError(`Container should be a html element, but received instead an object`);
 				}
 				else if(typeof container === 'string') {
-					container = document.querySelector(container + name);
+					container = document.querySelector(container + (name !== null ? name : ''));
 
 					if(container !== null) {return container;}
 					else {throw new TypeError(`${container} wasn't found in the document. Make sure the element is available in the DOM before you give me the selector.`)}
@@ -397,7 +398,7 @@ class Config {
 		switch (typeof v) {
 			case 'boolean':
 
-				const pager = document.querySelector(`ul[data-carousel-pager]${name}`);
+				const pager = document.querySelector(`ul[data-carousel-pager]${name !== null ? name : ''}`);
 				return opts.pager && pager ? pager : false;
 
 				return false;
