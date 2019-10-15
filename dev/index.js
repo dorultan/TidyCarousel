@@ -1,7 +1,6 @@
 import Controllers from './scripts/controllers';
 import './scss/styles.scss';
 
-
 // Options provided:
 // - slider_container: # It should be a element wich contains slides. Otherwise it will look for an element with the attribute named data-carousel="name"
 // - controllers: # It should be an array of two elements with the attribute data-carousel-controller="left or right"

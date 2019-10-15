@@ -5,7 +5,7 @@
   "main": "./dist/main.bundle.js",
   "scripts": {
     "start": "webpack-dev-server",
-    "build": "webpack --mode development",
+    "build": "webpack --mode production",
     "develop": "webpack --mode development"
   },
   "author": "Dorultan Ianos",
