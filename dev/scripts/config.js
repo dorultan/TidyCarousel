@@ -245,16 +245,16 @@ class Config {
 		return value;
 	}
 
-	get reset() {
+	get infinite() {
 
-		if(this.opts.reset === undefined) {
-			return true;
+		if(this.opts.infinite === undefined) {
+			return false;
 		}
 
-		return this.opts.reset;
+		return this.opts.infinite;
 	}
 
-	set reset(v) {
+	set infinite(v) {
 
 		if(typeof v !== 'boolean') {
 			throw new TypeError(`reset option should be a boolean instead of ${typeof v}`);

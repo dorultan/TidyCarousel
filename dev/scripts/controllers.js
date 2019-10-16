@@ -76,6 +76,9 @@ class Controllers extends Actions {
 		if(this.pause || this.dragable) {
 			return false;
 		}
+		// if(shouldStop) {
+		// 	return false;
+		// }
 
 		if(this.start_x - this.end_x !== 0 && this.swipe_stopped) {
 			return false;
@@ -100,35 +103,51 @@ class Controllers extends Actions {
 		// get to know what's the total pixels of the swipe.
 		let total = e.target.clientWidth || e.view.clientWidth;
 		let half = total / 2;
+		this.shouldInfinite(false)
 		if(this.dragable) {
-			let distance = this.start_x - this.end_x;
 			this.end_x = e.pageX || e.changedTouches[0].clientX;
 			this.direction = this.start_x - this.end_x > 0 ? 'left' : 'right';
-			this.current_continue_from = (this.end_x - this.start_x) * 100 / total;
-			this.next_continue_from = (this.start_x - this.end_x) * 100 / total;
-			if(this.direction === 'left') {
-				this.next_slide = this.current_slide -1 < 0 ? total_slides : this.current_slide -1;
-			}
+			const shouldStop = this.shouldInfinite(false);
 
-			if(this.direction === 'right') {
-				this.next_slide = this.current_slide + 1 > total_slides ? 0 : this.current_slide + 1;
+
+			if(!shouldStop) {
+
+				this.current_continue_from = (this.end_x - this.start_x) * 100 / total;
+				this.next_continue_from = (this.start_x - this.end_x) * 100 / total;
+				if(this.direction === 'left') {
+					this.next_slide = this.current_slide -1 < 0 ? total_slides : this.current_slide -1;
+				}
+
+				if(this.direction === 'right') {
+					this.next_slide = this.current_slide + 1 > total_slides ? 0 : this.current_slide + 1;
+				}
+
+				// this.end_x = 0;
+				// this.start_x = 0;
+				// // distance = 0;
+			// this.current_continue_from = 0;
+			// this.next_continue_from = 0;
+				this.swipeAnimation(this.current_continue_from, this.next_continue_from);
 			}
-			this.swipeAnimation(this.current_continue_from, this.next_continue_from);
 		}
 	}
 
 	onSwipeEnd(e) {
 		e.preventDefault();
 		const total_slides = this.container.children.length -1;
-
 		this.dragable = false;
+
+		if(this.current_slide === this.next_slide) {
+			return false;
+		}
+
 		if(this.swipe_stopped || this.end_x === 0) {
 			return false;
 		}
 		// this.pause = false;
 		else if(((this.start_x - this.end_x > 100) || (this.start_x - this.end_x < -100)) && !this.swipe_stopped) {
+
 			this.beforeAnimationStarts();
-			// this.swipe_stopped = true;
 			this.doAnimation(null, this.current_continue_from, this.next_continue_from, false)
 
 			.then(() => {
@@ -187,6 +206,60 @@ class Controllers extends Actions {
 		}
 
 
+	}
+
+	shouldInfinite(auto, arrows) {
+
+		if(!this.infinite) {
+
+			if(auto) {
+				if(this.autoDirection === 'right') {
+						const shouldStop =	this.next_slide === this.container.children.length -1 ? true : false;
+						return shouldStop;
+				}
+				else if(this.autoDirection === 'left') {
+						const shouldStop = this.next_slide === 0 ? true : false;
+						return shouldStop;
+				}
+			}
+
+			else if(arrows) {
+				if(this.direction === 'right') {
+						const shouldStop =	this.next_slide === this.container.children.length -1 ? true : false;
+						return shouldStop;
+				}
+				else if(this.direction === 'left') {
+						const shouldStop = this.next_slide === 0 ? true : false;
+						return shouldStop;
+				}
+			}
+			else if(!auto && !arrows) {
+				if(this.direction === 'right') {
+						const shouldStop =	this.current_slide === this.container.children.length -1 ? true : false;
+						return shouldStop;
+				}
+				else if(this.direction === 'left') {
+						const shouldStop = this.current_slide === 0 ? true : false;
+						return shouldStop;
+				}
+			}
+
+			return false;
+		}
+
+		// if(!this.infinite) {
+		// 	let shouldStop;
+		// 	if(this.autoDirection === 'right') {
+		// 		shouldStop = this.current_slide === this.container.children.length - 1 ? true : false;
+		//
+		// 		return shouldStop;
+		// 	}
+		// 	if(this.autoDirection === 'left') {
+		// 		shouldStop = this.current_slide === 0 ? true : false;
+		//
+		// 		return shouldStop;
+		// 	}
+		// }
 	}
 
 	shouldRestart() {
@@ -266,11 +339,18 @@ class Controllers extends Actions {
 			clearTimeout(this.duration_timer);
 			clearTimeout(this.delay_timer);
 			this.mouseenter = false;
+
+			// const shouldStop = this.shouldInfinite(true);
 			this.delayTimer();
 		}
 	}
 
 	delayTimer(e) {
+		const shouldStop = this.shouldInfinite(true);
+
+		if(shouldStop) {
+			return false;
+		}
 		if(!this.pause) {
 			this.delay_timer = setTimeout(() => {
 
@@ -289,7 +369,7 @@ class Controllers extends Actions {
 				this.delayTimer();
 				clearTimeout(this.delay_timer);
 
-				if(!this.reset && shouldReset) {
+				if(!this.infinite && shouldReset) {
 					return clearTimeout(this.delay_timer);
 				}
 
@@ -312,10 +392,12 @@ class Controllers extends Actions {
 	shouldPause(e) {
 		const listener_name = this.getDirection(e);
 		const shouldReset = this.shouldReset(listener_name);
+
 		if(this.pause) {
 			return false;
 		}
-		if(!this.reset && shouldReset) {
+
+		if(shouldReset) {
 			return false;
 		}
 
@@ -347,6 +429,12 @@ class Controllers extends Actions {
 		const total_slides = this.container.children.length -1;
 
 		const shouldSwap = this.direction === null ? false : listener_name !== this.direction ;
+		const shouldStop = this.shouldInfinite(false, true);
+
+		if(shouldStop && !shouldSwap) {
+			return false;
+		}
+		
 		this.mouseenter = false;
 
 		if(shouldSwap && this.next_slide !== this.current_slide) {
