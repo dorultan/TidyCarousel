@@ -33,7 +33,6 @@ class Controllers extends Actions {
 		this.swipe_stopped = false;
 		this.mouseenter = false;
 
-
 		if(Array.isArray(this.slides)) {
 			this.generateSlides();
 		}
@@ -324,7 +323,10 @@ class Controllers extends Actions {
 	}
 
 	shouldReset(dir) {
-		let total_slides = this.container.length - 1;
+		let total_slides = this.container !== null ? this.container.length - 1 : false;
+
+		if(!total_slides) {return false};
+
 		if(dir === 'left') {
 			if(this.next_slide - 1 === -1) {
 				return true;
@@ -448,11 +450,17 @@ class Controllers extends Actions {
 
 	autoControl() {
 		const shouldSwap = this.direction === null ? false : this.autoDirection !== this.direction;
-		const total_slides = this.container.children.length -1;
+		const total_slides = this.container !== null ? this.container.children.length -1 : false;
+
+		if(!total_slides) {
+			clearTimeout(this.delayTimer);
+			return false;
+		}
 
 		if(this.pause) {
 			return false;
 		}
+
 		if(!this.autoDirection) {
 
 			return false;
