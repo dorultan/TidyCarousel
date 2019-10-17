@@ -5,6 +5,7 @@
 // 	- @calback should be a function that needs to know when the animation finishes or the animation starts.
 // 	-
 // }
+import * as _animate from 'web-animations-js';
 
 export const animate = (elems, keyframes, opts) => {
 	// Validate:

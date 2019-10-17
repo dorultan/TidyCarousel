@@ -51,7 +51,7 @@ const config = {
 		contentBase: path.join(__dirname, 'dist'),
 		compress: true,
 		writeToDisk: true,
-		port: 3000
+		port: 8080
 	}
 }
 
