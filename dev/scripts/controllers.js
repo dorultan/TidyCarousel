@@ -202,12 +202,12 @@ class Controllers extends Actions {
 		}
 		if(Array.isArray(this.slides)) {
 			if(this.slides[this.next_slide].beforeAnimation) {
-				this.slides[this.next_slide].beforeAnimation(this.next_slide);
+				this.slides[this.next_slide].beforeAnimation(this.container.children[this.next_slide], this.next_slide).bind(this);
 			}
 		}
 
 		if(this.opts.beforeAnimation) {
-			this.opts.beforeAnimation(this.next_slide);
+			this.opts.beforeAnimation(this.container.children[this.next_slide], this.next_slide).bind(this)
 		}
 
 
@@ -287,7 +287,7 @@ class Controllers extends Actions {
 				if(Array.isArray(this.slides)) {
 
 						if(typeof this.slides[this.next_slide].afterAnimation === 'function') {
-							this.slides[this.next_slide].afterAnimation(this.next_slide)
+							this.slides[this.next_slide].afterAnimation(this.container.children[this.next_slide], this.next_slide)
 
 							.then(() => {
 								this.pause = false;
