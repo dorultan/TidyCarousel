@@ -1,6 +1,7 @@
+import polyfills from './scripts/polyfills';
 import Controllers from './scripts/controllers';
 import './scss/styles.scss';
-
+polyfills();
 // Options provided:
 // - slider_container: # It should be a element wich contains slides. Otherwise it will look for an element with the attribute named data-carousel="name"
 // - controllers: # It should be an array of two elements with the attribute data-carousel-controller="left or right"
@@ -22,5 +23,5 @@ class TidyCarousel extends Controllers {
 }
 
 
-// new TidyCarousel({pager: true, swipe: true, drag: true, infinite: false, auto: {direction: 'left'}});
+// new TidyCarousel({pager: true, swipe: true, drag: true, infinite: true, auto: {direction: 'left'}});
 export default TidyCarousel;

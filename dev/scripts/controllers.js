@@ -73,6 +73,11 @@ class Controllers extends Actions {
 	}
 
 	onSwipe(e) {
+		this.mouseenter = true;
+
+		clearTimeout(this.delay_timer);
+		clearTimeout(this.duration_timer);
+
 		if(this.pause || this.dragable) {
 			return false;
 		}
@@ -83,7 +88,6 @@ class Controllers extends Actions {
 		if(this.start_x - this.end_x !== 0 && this.swipe_stopped) {
 			return false;
 		}
-
 		this.start_x = e.clientX || e.changedTouches[0].clientX;
 		this.dragable = true;
 		this.current_slide = this.current_slide === null ? 0 : this.next_slide !== null ? this.next_slide : this.current_slide;
@@ -133,9 +137,10 @@ class Controllers extends Actions {
 	}
 
 	onSwipeEnd(e) {
-		e.preventDefault();
+
 		const total_slides = this.container.children.length -1;
 		this.dragable = false;
+		this.mouseenter = false;
 
 		if(this.current_slide === this.next_slide) {
 			return false;
@@ -347,7 +352,6 @@ class Controllers extends Actions {
 
 	delayTimer(e) {
 		const shouldStop = this.shouldInfinite(true);
-
 		if(shouldStop) {
 			return false;
 		}
@@ -363,7 +367,9 @@ class Controllers extends Actions {
 
 	durationTimer() {
 		const shouldReset = this.shouldReset(this.autoDirection);
-
+		if(this.mouseenter) {
+			return false;
+		}
 		if(!this.pause) {
 			this.duration_timer = setTimeout(() => {
 				this.delayTimer();
@@ -373,7 +379,9 @@ class Controllers extends Actions {
 					return clearTimeout(this.delay_timer);
 				}
 
-				this.autoControl();
+				if(!this.mouseenter) {
+					this.autoControl();
+				}
 
 			}, this.duration)
 		}
@@ -434,7 +442,7 @@ class Controllers extends Actions {
 		if(shouldStop && !shouldSwap) {
 			return false;
 		}
-		
+
 		this.mouseenter = false;
 
 		if(shouldSwap && this.next_slide !== this.current_slide) {
@@ -541,7 +549,7 @@ class Controllers extends Actions {
 		const total_slides = this.container !== null ? this.container.children.length -1 : false;
 
 		if(!total_slides) {
-			clearTimeout(this.delayTimer);
+			clearTimeout(this.delay_timer);
 			return false;
 		}
 
