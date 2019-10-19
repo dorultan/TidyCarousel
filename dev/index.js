@@ -24,5 +24,5 @@ class TidyCarousel extends Controllers {
 }
 
 
-// new TidyCarousel({pager: true, swipe: true, drag: true, infinite: true, auto: {direction: 'left'}});
+new TidyCarousel({pager: true, swipe: true, drag: true, infinite: true, auto: {direction: 'left'}});
 export default TidyCarousel;

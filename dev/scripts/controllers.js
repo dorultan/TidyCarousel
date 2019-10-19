@@ -202,12 +202,12 @@ class Controllers extends Actions {
 		}
 		if(Array.isArray(this.slides)) {
 			if(this.slides[this.next_slide].beforeAnimation) {
-				this.slides[this.next_slide].beforeAnimation(this.container.children[this.next_slide], this.next_slide).bind(this);
+				this.slides[this.next_slide].beforeAnimation(this.container.children[this.next_slide], this.next_slide);
 			}
 		}
 
 		if(this.opts.beforeAnimation) {
-			this.opts.beforeAnimation(this.container.children[this.next_slide], this.next_slide).bind(this)
+			this.opts.beforeAnimation(this.container.children[this.next_slide], this.next_slide)
 		}
 
 
