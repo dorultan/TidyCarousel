@@ -1,19 +1,23 @@
 # ****Tidy carousel**** [![Build Status](https://travis-ci.com/dorultan/tidy-carousel.svg?branch=master)](https://travis-ci.com/dorultan/tidy-carousel)
 
-I've built this carousel as a tanks giving to the open-source community, felt like was missing this type of carousel. This carousel works in clean order without manipulating parent's margin/translateX. It transforms the X axis of the current and the chosen slide from the stack using the built in Animate API.
+This is a simple UI widget built in vanilla javascript (es2015+)
+with mobile and responsive in mind. Tidy carousel can be highly
+configurable (See all available [config](http://localhost:8080/documentation/configuration))
+having features such as [mouse drag](http://localhost:8080/documentation/configuration),
+ [swipe](http://localhost:8080/documentation/configuration),
+[pager](http://localhost:8080/documentation/configuration),
+[infinite sliding](http://localhost:8080/documentation/configuration)
+and [more](http://localhost:8080/documentation/configuration).
+Tidy carousel is inspired by card deck, the mecanism beyond the
+seems is two numbers (current_slide and next_slide) changing based
+ on events and those are used to select the children
+ (e.g: \`<div class="tidy__carousel-slide"></div>\`) of its parent
+  (e.g: \` <div class="tidy__carousel">{...childrens}</div\`).
+
 
 ## ****Installation****
-> `npm install` TidyCarousel </br>
-> `yarn add` TidyCarousel
-
-## ****Links of content.****
-
-* [Setting up dynamic slides.]('https://github.com/dorultan/TidyCarousel/examples/')
-* [Setting up a pager for the carousel.]('https://github.com/dorultan/TidyCarousel/examples/')
-* [Setting up arrows as buttons for carousel.](('https://github.com/dorultan/TidyCarousel/examples/'))
-* [Setting infinite sliding.](('https://github.com/dorultan/TidyCarousel/examples/'))
-* [Setting up async animation after the slide occurs with dynamic slides .](('https://github.com/dorultan/TidyCarousel/examples/'))
-* [Setting up async animation after the slide occurs with static html.](('https://github.com/dorultan/TidyCarousel/examples/'))
+> `npm install` tidy-carousel </br>
+> `yarn add` tidy-carousel
 
 ## ****Configuration.****
 
@@ -39,8 +43,8 @@ I've built this carousel as a tanks giving to the open-source community, felt li
 | beforeAnimation | `Function` |  | A function that is invoked before the slide occurs.|
 | afterAnimation | `Function` |  | A function that is invoked After the slide occurs. If present, it must return a promise e.g: `afterAnimation: (element, index) => { return new Promise((success, reject) => { setTimeout(() => { doSomething(); success()}, 500)})}`<br/> ****Note:**** This function is only invoked if the `slides` is not set to an array of slides.|
 
-## Basic Usage.
-
+## Usage.
+For more examples visit http://tidy-carousel.com/documentation/examples.
 ### Html
 ```html
 
