@@ -7,7 +7,8 @@
   "scripts": {
     "start": "webpack-dev-server",
     "build": "webpack --mode production",
-    "develop": "webpack --mode development"
+    "develop": "webpack --mode development",
+    "test" : "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Dorultan Ianos",
   "license": "MIT",
