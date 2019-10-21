@@ -77,13 +77,18 @@ For more examples visit http://tidy-carousel.com/documentation/examples.
  const config = {}; // See: https://github.com/dorultan/tidy-carousel#configuration.
  const carousel = new Carousel(config);
 ```
-# Issues
+## Issues
 
 For any issues please [open a new issue](https://github.com/dorultan/tidy-carousel/issues) with an appropriate label, write a simple headline and a comment containing the following:
 - Your browser (e.g: Chrome v.54)
 - Your installation method (e.g: yarn v.1.19.1)
 - Details (Such as your markup or any useful info.)
 
-# Contribution
+## Contribution
 
+Any contribution to this project ****is very appreciated****.
 In order to contribute to this project, [make a pull request](https://github./com/dorultan/tidy-carousel/pulls) using development branch.
+
+## License
+
+This work is licensed under [MIT License](https://github.com/dorultan/tidy-carousel/blob/master/LICENSE).
