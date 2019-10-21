@@ -91,4 +91,4 @@ In order to contribute to this project, [make a pull request](https://github./co
 
 ## License
 
-This work is licensed under [MIT License](https://github.com/dorultan/tidy-carousel/blob/master/LICENSE).
+This work is licensed under [MIT License](https://github.com/dorultan/tidy-carousel/blob/master/LICENSE) .
