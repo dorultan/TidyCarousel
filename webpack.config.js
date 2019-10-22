@@ -11,8 +11,9 @@ const config = {
 		publicPath: './dist',
 		path: path.resolve(__dirname, 'dist'),
 		filename: `tidy-carousel${argv[idx_of_mode ? idx_of_mode + 1 : 0] === 'production' ? '.min.js' : '.js'}`,
-	  library: 'beta',
+	  library: 'TidyCarousel',
 	  libraryTarget: 'umd',
+		libraryExport: 'TidyCarousel.default',
 	  globalObject: "typeof self !== 'undefined' ? self : this"
 	},
 	performance: {
