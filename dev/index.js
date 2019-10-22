@@ -17,7 +17,7 @@ polyfills();
  			// - If is a boolean, carousel will lookup for an element in the dom with the attribute data-carousel-pager.
  			// - If is an Object carousel will use this element as the container of the indicators, wich will be generated.
 
-class TidyCarousel extends Controllers {
+export class TidyCarousel extends Controllers {
 	constructor(opts) {
 		super(opts);
 	}
@@ -25,4 +25,3 @@ class TidyCarousel extends Controllers {
 
 
 // new TidyCarousel({pager: true, swipe: true, drag: true, infinite: true, auto: {direction: 'left'}});
-export default TidyCarousel;

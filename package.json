@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "This is a clean carousel slider built in javascript (es2015+) for modern browsers.",
   "main": "./dist/tidy-carousel.min.js",
-  "unpkg": "./dist/tidy-carousel.js",
-  "module": "./dist/tidy-carousel.js",
+  "unpkg": "./dist/tidy-carousel.min.js",
+  "module": "./dist/tidy-carousel.min.js",
   "keywords": [
     "carousel",
     "slider",
