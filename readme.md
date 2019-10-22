@@ -27,7 +27,7 @@ Using unpkg:
 | ****Option****     | ****Type**** | ****Default****    | ****Description****    |
 | :------------- | :------------- | :------| :------|
 | duration   | `Number` | 500     | The duration of the slide.|
-| name| `String`| undefined | This option should be used when intializing multiple instances. **** *Note:**** The name given must match with the attr(s) used for instance's controller/pager (data-for={name}) and also for the container (data-name={name}).|
+| name| `String`| null | This option should be used when intializing multiple instances. **** *Note:**** The name given must match with the attr(s) used for instance's controller/pager (data-for={name}) and also for the container (data-name={name}).|
 | easing   | `String` |'ease'    |The rate of the animation's change over time. Accepts the pre-defined values "linear", "ease", "ease-in", "ease-out", and "ease-in-out", or a custom "cubic-bezier" value like "cubic-bezier(0.42, 0, 0.58, 1)"|
 | container  | `String`/`Node` | '.tidy__carousel' | This is the wrapper of the slides, witch can be neither the node element or a selector as a string.|
 | delay   | `Number` |500     | This is the delay in between each slide. Useful if auto is set to true.|
