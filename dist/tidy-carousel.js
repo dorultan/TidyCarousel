@@ -193,5 +193,5 @@ eval("module.exports = __webpack_require__(/*! ./dev/index */\"./dev/index.js\")
 
 /***/ })
 
-/******/ })["TidyCarousel.default"];
+/******/ })["default"];
 });
