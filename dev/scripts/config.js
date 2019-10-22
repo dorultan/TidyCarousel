@@ -237,9 +237,9 @@ class Config {
 			throw new Error(`Type error: "duration" should be a number instead of ${typeof value}`);
 		}
 
-		else if( value < this.duration || value < 0) {
+		else if(value < 0) {
 
-			throw new Error(`Value error: "duration" should be a number > ${this.duration}, but received instead ${value}`);
+			throw new Error(`Value error: "duration" should be a number > 0, but received instead ${value}`);
 		}
 
 		return value;
@@ -248,7 +248,7 @@ class Config {
 	get infinite() {
 
 		if(this.opts.infinite === undefined) {
-			return false;
+			return true;
 		}
 
 		return this.opts.infinite;
@@ -257,7 +257,7 @@ class Config {
 	set infinite(v) {
 
 		if(typeof v !== 'boolean') {
-			throw new TypeError(`reset option should be a boolean instead of ${typeof v}`);
+			throw new TypeError(`'infinite' option should be a boolean instead of ${typeof v}`);
 		}
 
 		return v;
@@ -439,7 +439,7 @@ class Config {
 			 return this.opts.swipe;
 		}
 
-		return false;
+		return true;
 	}
 
 	set swipe(v) {
@@ -455,7 +455,7 @@ class Config {
 			return this.opts.drag;
 		}
 
-		return false;
+		return true;
 	}
 
 	set drag(v) {
