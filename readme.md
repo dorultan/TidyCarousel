@@ -31,18 +31,19 @@ Using unpkg:
 | easing   | `String` |'ease'    |The rate of the animation's change over time. Accepts the pre-defined values "linear", "ease", "ease-in", "ease-out", and "ease-in-out", or a custom "cubic-bezier" value like "cubic-bezier(0.42, 0, 0.58, 1)"|
 | container  | `String`/`Node` | '.tidy__carousel' | This is the wrapper of the slides, witch can be neither the node element or a selector as a string.|
 | delay   | `Number` |500     | This is the delay in between each slide. Useful if auto is set to true.|
-| auto   | `Boolean` | false     | This makes the carousel loop without an event.|
+| auto   | `Boolean` | true     | This makes the carousel loop without an event.|
 |auto.direction|`String`| 'left'| This opts specifies in wich direction the carousel should slide. The only possible values can be 'right' or 'left' |
 | swipe | `Boolean` | true | This option (if true) will enable touch event for mobile devices.|
 | drag | `Boolean` | true | This option (if true) will enable the user to drag the slide. |
 | startAt | `Number` | 0 | This option is the index of the first slide.  |
-| slides | `Array` | [] | It should be an array of objects representing the slides.|
+| slides | `Array` | null | It should be an array of objects representing the slides.|
 | slides[i].html | `String` |  | It should be a html element as a string e.g: `<div class="my_slide">Content</div>`. The element will be inserted into the DOM using ` element.insertadjacentelement` method.|
 | slides[i].src | `String` |  | It should be the source of the image. <br/> *****Note:**** This option is an alternative for `slides[i].node`. |
 | slides[i].alt | `String` | [] | It should be the alternative for the image. <br/> ****Note:**** This option will only work if you set `slides[i].src`.|
 | slides[i].beforeAnimation(element, index) | `Function` |  | A function that is invoked before the slide occurs.|
 | slides[i].afterAnimation(element, index) | `Function` |  | A function that is invoked After the slide occurs. If present, it must return a promise e.g: `afterAnimation: (element, index) => { return new Promise((success, reject) => { setTimeout(() => { doSomething(); success()}, 500)})}`|
 | pager | `Boolean` | false | This option if `true`, the carousel will look for an `<ul></ul>` element with attr `data-carousel-pager`and will generate a pager at the bottom of the carousel. **** Note:**** If name opts is set, add the attribute data-for={name} to the ul[data-carousel-pager].|
+|pager.container| `String`/`DOM node` |The container of the pages. If available carousel will generate the pages within this element.||
 | infinite | `Boolean` | true | If set to true, the carousel will loop infinitely. |
 | controllers | `String`/`DOM node` | '[data-carousel-controller]'| Can be set to a node element or a selector as a string. Each controller must have the attribute data-carousel-controller="left or right".  **** Note:**** If name opts is set, add the attribute data-for={name} to each controller. |
 | beforeAnimation(elem, index) | `Function` |  | A function that is invoked before the slide occurs.|
