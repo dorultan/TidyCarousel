@@ -1,10 +1,20 @@
 {
   "name": "tidy-carousel",
   "version": "1.0.0",
-  "description": "Is a simple, clean carousel slider built in javascript (es2015+).",
-  "main": "./dist/main.bundle.js",
+  "description": "This is a clean carousel slider built in javascript (es2015+) for modern browsers.",
+  "main": "./dist/tidy-carousel.min.js",
   "unpkg": "./dist/tidy-carousel.js",
   "module": "./dist/tidy-carousel.js",
+  "keywords": [
+    "carousel",
+    "slider",
+    "deck",
+    "slideshow",
+    "swipe",
+    "drag",
+    "slides",
+    "mobile"
+  ],
   "scripts": {
     "start": "webpack-dev-server",
     "prod": "webpack --mode production",
