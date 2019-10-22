@@ -13,7 +13,7 @@ const config = {
 		filename: `tidy-carousel${argv[idx_of_mode ? idx_of_mode + 1 : 0] === 'production' ? '.min.js' : '.js'}`,
 	  library: 'TidyCarousel',
 	  libraryTarget: 'umd',
-		libraryExport: 'TidyCarousel.default',
+		libraryExport: 'default',
 	  globalObject: "typeof self !== 'undefined' ? self : this"
 	},
 	performance: {
