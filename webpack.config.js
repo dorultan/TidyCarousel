@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
-
+const argv = process.argv;
+const idx_of_mode = argv.indexOf('--mode');
 
 const config = {
 	name: 'client',
@@ -9,7 +10,7 @@ const config = {
 	output: {
 		publicPath: './dist',
 		path: path.resolve(__dirname, 'dist'),
-		filename: '[name].bundle.js',
+		filename: `tidy-carousel${argv[idx_of_mode ? idx_of_mode + 1 : 0] === 'production' ? '.min.js' : '.js'}`,
 	  library: 'beta',
 	  libraryTarget: 'umd',
 	  globalObject: "typeof self !== 'undefined' ? self : this"
