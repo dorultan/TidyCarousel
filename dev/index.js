@@ -17,7 +17,7 @@ polyfills();
  			// - If is a boolean, carousel will lookup for an element in the dom with the attribute data-carousel-pager.
  			// - If is an Object carousel will use this element as the container of the indicators, wich will be generated.
 
-export class TidyCarousel extends Controllers {
+export default class TidyCarousel extends Controllers {
 	constructor(opts) {
 		super(opts);
 	}
