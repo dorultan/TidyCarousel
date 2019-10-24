@@ -1,5 +1,7 @@
 import polyfills from './scripts/polyfills';
 import Controllers from './scripts/controllers';
+import './scss/styles.scss';
+
 polyfills();
 // Options provided:
 // - slider_container: # It should be a element wich contains slides. Otherwise it will look for an element with the attribute named data-carousel="name"

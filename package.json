@@ -5,6 +5,7 @@
   "main": "./dist/tidy-carousel.min.js",
   "unpkg": "./dist/tidy-carousel.min.js",
   "module": "./dist/tidy-carousel.min.js",
+  "homepage": "http://tidy-carousel.com",
   "keywords": [
     "carousel",
     "slider",

@@ -1,12 +1,9 @@
 # ****Tidy carousel**** [![Build Status](https://travis-ci.com/dorultan/tidy-carousel.svg?branch=master)](https://travis-ci.com/dorultan/tidy-carousel)
 
 This is a simple UI widget mobile-friendly, responsive built in vanilla javascript (es2015+) for modern browsers. Tidy carousel is inspired by a card deck as multiple slides stack together and based on an event an element is picked transforming its x-axis using percentage. Tidy carousel is also highly
-configurable (See [config](http://localhost:8080/documentation/configuration))
-having features such as [mouse drag](http://localhost:8080/documentation/configuration),
- [swipe](http://localhost:8080/documentation/configuration),
-[pager](http://localhost:8080/documentation/configuration),
-[infinite sliding](http://localhost:8080/documentation/configuration)
-and [more](http://localhost:8080/documentation/configuration).
+configurable (See [config](http:/tidy-carousel.com/documentation/configuration)
+having features such as mouse drag, swipe, pager, infinite sliding
+and [more](http://tidy-carousel.com/documentation/configuration).
 
 
 ## ****Installation****
@@ -20,7 +17,7 @@ Using yarn:
 
 Using unpkg:
 
-`<script type="text/javascript" src="unpkg.com/tidy-carousel/tidy-carousel.min.js"></script>`
+`<script type="text/javascript" src="https://unpkg.com/tidy-carousel/tidy-carousel.min.js"></script>`
 
 ## ****Configuration.****
 
