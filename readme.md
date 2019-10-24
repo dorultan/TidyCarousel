@@ -17,7 +17,7 @@ Using yarn:
 
 Using unpkg:
 
-`<script type="text/javascript" src="https://unpkg.com/tidy-carousel/tidy-carousel.min.js"></script>`
+`<script type="text/javascript" src="https://unpkg.com/tidy-carousel/dist/tidy-carousel.min.js"></script>`
 
 ## ****Configuration.****
 
